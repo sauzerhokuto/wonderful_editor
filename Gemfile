@@ -50,6 +50,7 @@ group :development do
   gem "annotate" # 追加
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"
+  gem "rails-erd"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
