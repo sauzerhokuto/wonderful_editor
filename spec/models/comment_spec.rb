@@ -22,5 +22,26 @@
 require "rails_helper"
 
 RSpec.describe Comment, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "コメントが150文字以内の時" do
+    let(:comment) { create(:comment) }
+    it "コメント登録が実行される" do
+      expect(comment.valid?).to eq true
+    end
+  end
+
+  context "コメントが空白の時" do
+    let(:comment) { create(:comment, body: "") }
+    it "コメント登録が実行される" do
+      expect { comment }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+  end
+
+  context "コメントが151文字以上の時" do
+    let(:comment) { create(:comment, body: "a" * 151) }
+    # binding.pry
+    it "コメント登録がされない" do
+      # binding.pry
+      expect { comment }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+  end
 end

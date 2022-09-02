@@ -20,6 +20,21 @@
 #
 require "rails_helper"
 
-RSpec.describe ArticleLike, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
-end
+# RSpec.describe ArticleLike, type: :model do
+#   context "いいねしていないユーザーがいいねした時" do
+#     # いいねは「ArticleLikeの主キーが発行された状態」だからカラムはないがcreateしてあげる
+#     let(:article_like) { create(:article_like) }
+#     it "いいねの登録がされる" do
+#       expect(article_like).to be_valid
+#     end
+#   end
+
+#   context "user_idとarticle_idが同じ場合" do
+#     user = FactoryBot.create(:user)
+#     article = FactoryBot.create(:article)
+#     let(:article_like) { 2.times { create(:article_like, user_id: user.id, article_id: article.id) } }
+#     it "複数回いいねの登録ができない" do
+#       expect { article_like }.to raise_error(ActiveRecord::RecordInvalid)
+#     end
+#   end
+# end

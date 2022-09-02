@@ -20,5 +20,24 @@
 require "rails_helper"
 
 RSpec.describe Article, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "タイトルと本文が指定されている時" do
+    let(:article) { create(:article) }
+    it "登録がされる" do
+      expect(article).to be_valid
+    end
+  end
+
+  context "タイトルが指定されていない時" do
+    let(:article) { create(:article, title: nil) }
+    it "登録がされない" do
+      expect { article }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+  end
+
+  context "本文が指定されていない時" do
+    let(:article) { create(:article, body: nil) }
+    it "登録がされない" do
+      expect { article }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+  end
 end
