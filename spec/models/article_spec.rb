@@ -35,10 +35,9 @@ RSpec.describe Article, type: :model do
   end
 
   context "本文が指定されていない時" do
-    user = FactoryBot.create(:user)
-    article = user.articles.create!(title: "foo", body: "")
+    let(:article) { create(:article, body: nil) }
     it "登録がされない" do
-      expect(article).to be_invalid
+      expect { article }.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
 end
