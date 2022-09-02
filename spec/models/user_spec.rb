@@ -17,16 +17,4 @@ RSpec.describe User, type: :model do
       expect { user }.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
-
-  # context "同一のnameが存在しない時" do
-  # 最初に同じテストを実施しているからテストの必要無し
-
-  context "同一のnameが存在する時" do
-    # 同じuserの名前を2つ作る
-    let(:user) { create_list(:user, 2, name: "foo") }
-    it "user登録が実行されない" do
-      # validationにかかってエラーが出ればOK
-      expect { user }.to raise_error(ActiveRecord::RecordInvalid)
-    end
-  end
 end
