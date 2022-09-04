@@ -20,25 +20,25 @@ require "rails_helper"
 #     end
 #   end
 
-  # describe "GET /api/v1/articles/:id" do
-  #   subject { get(api_v1_articles_path) }
+# describe "GET /api/v1/articles/:id" do
+#   subject { get(api_v1_articles_path) }
 
-  #   it "テスト" do
-  #   end
-  # end
+#   it "テスト" do
+#   end
+# end
 
-  # describe "POST /api/v1/articles/:id" d
-  #   it "" d
-  #   end
-  # end
+# describe "POST /api/v1/articles/:id" d
+#   it "" d
+#   end
+# end
 
-  # describe "PATCH(PUT) /api/v1/articles/:id" d
-  #   it "" d
-  #   end
-  # end
+# describe "PATCH(PUT) /api/v1/articles/:id" d
+#   it "" d
+#   end
+# end
 
-  # describe "DELETE /api/v1/articles/:id" d
-  #   it "" d
-  #   end
-  # end
+# describe "DELETE /api/v1/articles/:id" d
+#   it "" d
+#   end
+# end
 # end
