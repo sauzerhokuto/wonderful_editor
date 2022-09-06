@@ -20,7 +20,7 @@ RSpec/EmptyLineAfterFinalLet:
 # feature spec は exclude でも良いかもしれない。
 # ヒアドキュメント使うと一瞬で超えるので disable も検討。
 RSpec/ExampleLength:
-  Max: 8
+  Max: 15
 
 # block の方がテスト対象が
 # * `{}` の前後のスペースと相まって目立つ
@@ -60,3 +60,7 @@ RSpec/NestedGroups:
 # ブロックの方が見た目がスッキリして見やすいので、どちらでもお好きにどうぞ。
 RSpec/ReturnFromStub:
   Enabled: false
+
+# expectの行数の緩和を設定
+RSpec/MultipleExpectations:
+  Max: 10
