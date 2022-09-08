@@ -52,41 +52,67 @@ RSpec.describe "Articles", type: :request do
   #   end
   # end
 
-  describe "POST /api/v1/articles" do
-    subject { post(api_v1_articles_path, params: params) }
+  # describe "POST /api/v1/articles" do
+  #   subject { post(api_v1_articles_path, params: params) }
 
-    context "適切なパラメーターを送信した時" do
-      before { allow_any_instance_of(Api::V1::BaseApiController).to receive(:current_user).and_return(current_user) }
+  #   context "適切なパラメーターを送信した時" do
+  #     before { allow_any_instance_of(Api::V1::BaseApiController).to receive(:current_user).and_return(current_user) }
 
-      let(:current_user) { create(:user) }
-      let(:params) { { article: attributes_for(:article) } }
-      it "レコードが発行される" do
-        expect { subject }.to change { Article.count }.by(1)
-        res = JSON.parse(response.body)
+  #     let(:current_user) { create(:user) }
+  #     let(:params) { { article: attributes_for(:article) } }
+  #     it "レコードが発行される" do
+  #       expect { subject }.to change { Article.count }.by(1)
+  #       res = JSON.parse(response.body)
+  #       expect(response).to have_http_status(:ok)
+  #       expect(res["title"]).to eq params[:article][:title]
+  #       expect(res["body"]).to eq params[:article][:body]
+  #       expect(res["title"]).to eq params[:article][:title]
+  #       expect(res["user"].keys).to eq ["id", "name", "email"]
+  #       expect(res["user"]["id"]).to eq current_user.id
+  #     end
+  #   end
+
+  #   context "不適切なパラメータを送信した時" do
+  #     before { allow_any_instance_of(Api::V1::BaseApiController).to receive(:current_user).and_return(current_user) }
+
+  #     let(:current_user) { create(:user) }
+  #     let(:params) { attributes_for(:article) }
+  #     it "レコードが発行されない" do
+  #       binding.pry
+  #       expect { subject }.to raise_error(ActionController::ParameterMissing)
+  #     end
+  #   end
+  # end
+
+  describe "PATCH(PUT) /api/v1/articles/:id" do
+    subject { patch(api_v1_article_path(article_id), params: params) }
+
+    before { allow_any_instance_of(Api::V1::BaseApiController).to receive(:current_user).and_return(current_user) }
+
+    let(:current_user) { create(:user) }
+    let(:params) { { article: { title: "aaa", created_at: 1.day.ago } } }
+
+    context "適切なパラメータを送信した時" do
+      let(:article_id) { article.id }
+      let(:article) { create(:article, user_id: current_user.id) }
+
+      it "指定した内容だけレコードが更新される" do
+        expect { subject }.to change { Article.find(article_id).title }.from(article.title).to(params[:article][:title]) &
+                              not_change { Article.find(article_id).body } &
+                              not_change { Article.find(article_id).created_at }
         expect(response).to have_http_status(:ok)
-        expect(res["title"]).to eq params[:article][:title]
-        expect(res["body"]).to eq params[:article][:body]
-        expect(res["title"]).to eq params[:article][:title]
-        expect(res["user"].keys).to eq ["id", "name", "email"]
-        expect(res["user"]["id"]).to eq current_user.id
       end
     end
 
     context "不適切なパラメータを送信した時" do
-      before { allow_any_instance_of(Api::V1::BaseApiController).to receive(:current_user).and_return(current_user) }
+      let(:article) { create(:article) }
+      let(:article_id) { article.id }
 
-      let!(:current_user) { create(:user) }
-      let(:params) { attributes_for(:article) }
-      it "レコードが発行されない" do
-        expect { subject }.to raise_error(ActionController::ParameterMissing)
+      it "指定した内容だけレコードが更新される" do
+        expect { subject }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
   end
-
-  # describe "PATCH(PUT) /api/v1/articles/:id" do
-  #   fit "レコードが発行されない" do
-  #   end
-  # end
 
   # describe "DELETE /api/v1/articles/:id" do
   #   it "" do
