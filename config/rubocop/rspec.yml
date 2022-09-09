@@ -64,3 +64,7 @@ RSpec/ReturnFromStub:
 # expectの行数の緩和を設定
 RSpec/MultipleExpectations:
   Max: 10
+
+# context ごとに let! を使い分けたい場合があるため無効に
+RSpec/LetSetup:
+  Enabled: false
