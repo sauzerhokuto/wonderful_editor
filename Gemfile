@@ -40,6 +40,7 @@ group :development, :test do
   gem "rspec-rails"
   gem "rubocop-rails" # 追加
   gem "rubocop-rspec" # 追加
+  gem "foreman" #追加
 end
 
 group :development do
