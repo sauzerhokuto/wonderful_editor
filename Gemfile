@@ -34,13 +34,13 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "factory_bot_rails"
   gem "faker"
+  gem "foreman" # 追加
   gem "pry-byebug" # 追加
   gem "pry-doc" # 追加
   gem "pry-rails" # 追加
   gem "rspec-rails"
   gem "rubocop-rails" # 追加
   gem "rubocop-rspec" # 追加
-  gem "foreman" #追加
 end
 
 group :development do
