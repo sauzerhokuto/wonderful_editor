@@ -23,7 +23,6 @@ RSpec.describe "Api::V1::Auth::Registrations", type: :request do
         expect(header["expiry"]).to be_present
         expect(header["uid"]).to be_present
         expect(header["token-type"]).to be_present
-        binding.pry
       end
     end
 
