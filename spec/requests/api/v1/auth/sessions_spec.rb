@@ -3,15 +3,15 @@ require "rails_helper"
 RSpec.describe "Api::V1::Auth::Sessions", type: :request do
   describe "POST /api/v1/auth/sign_in" do
     subject { post(api_v1_user_session_path, params: params) }
+
     let(:current_user) { create(:user) }
 
     context "適切なメールアドレス、パスワードを送信した時" do
       let(:params) { { email: current_user.email, password: current_user.password } }
 
       it "ログインできる" do
-        binding.pry
         subject
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
         res = JSON.parse(response.body)
         header = response.headers
         expect(res["data"]["id"]).to eq current_user.id
