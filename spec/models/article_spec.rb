@@ -44,7 +44,7 @@ RSpec.describe Article, type: :model do
 
   describe "正常系" do
     context "タイトルと本文が入力されているとき" do
-      let(:article) { build(:article) }
+      let(:article) { create(:article) }
 
       it "下書き状態の記事が作成できる" do
         expect(article).to be_valid
