@@ -8,15 +8,15 @@ RSpec.describe "Api::V1::Current::Articles", type: :request do
     let(:headers) { current_user.create_new_auth_token }
 
     context "自分の公開記事が作成された時" do
-      let!(:article) { create(:article, :publishe, user: current_user) }
-      let!(:article1) { create(:article, :publishe, updated_at: 1.days.ago, user: current_user) }
-      let!(:article2) { create(:article, :publishe) }
+      let!(:article) { create(:article, :published, user: current_user) }
+      let!(:article1) { create(:article, :published, updated_at: 1.days.ago, user: current_user) }
+      let!(:article2) { create(:article, :published) }
 
       before do
         create(:article, :draft, user: current_user)
       end
 
-      fit "自分の公開記事一覧が取得できる" do
+      it "自分の公開記事一覧が取得できる" do
         subject
         expect(response).to have_http_status(:ok)
         res = JSON.parse(response.body)

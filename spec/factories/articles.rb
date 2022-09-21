@@ -28,7 +28,7 @@ FactoryBot.define do
       status { 0 }
     end
 
-    trait :publishe do
+    trait :published do
       status { 1 }
     end
   end

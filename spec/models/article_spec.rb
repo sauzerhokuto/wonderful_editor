@@ -62,11 +62,11 @@ RSpec.describe Article, type: :model do
     end
 
     context "status が公開状態のとき" do
-      let(:article) { build(:article, :publishe) }
+      let(:article) { build(:article, :published) }
 
       it "公開状態の記事が作成できる" do
         expect(article).to be_valid
-        expect(article.status).to eq "publishe"
+        expect(article.status).to eq "published"
       end
     end
   end
