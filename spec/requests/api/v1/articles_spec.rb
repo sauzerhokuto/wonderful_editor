@@ -5,9 +5,9 @@ RSpec.describe "Articles", type: :request do
     subject { get(api_v1_articles_path) }
 
     context "記事のレコードが発行された場合" do
-      let!(:article1) { create(:article, :publishe, updated_at: 1.days.ago) }
-      let!(:article) { create(:article, :publishe) }
-      let!(:article2) { create(:article, :publishe, updated_at: 2.days.ago) }
+      let!(:article1) { create(:article, :published, updated_at: 1.days.ago) }
+      let!(:article) { create(:article, :published) }
+      let!(:article2) { create(:article, :published, updated_at: 2.days.ago) }
       it "記事一覧を取得できる" do
         subject
         res = JSON.parse(response.body)
@@ -33,7 +33,7 @@ RSpec.describe "Articles", type: :request do
     subject { get(api_v1_article_path(article_id)) }
 
     context "指定したID(記事)に接続した時" do
-      let(:article) { create(:article, :publishe) }
+      let(:article) { create(:article, :published) }
       let(:article_id) { article.id }
       it "指定のレコードの取得ができる" do
         subject
@@ -72,7 +72,7 @@ RSpec.describe "Articles", type: :request do
 
     context "適切なパラメーターを送信した時" do
       let(:current_user) { create(:user) }
-      let(:params) { { article: attributes_for(:article, status: "publishe") } }
+      let(:params) { { article: attributes_for(:article, status: "published") } }
       let(:headers) { current_user.create_new_auth_token }
 
       it "レコードが発行される" do
@@ -85,7 +85,7 @@ RSpec.describe "Articles", type: :request do
         expect(res["title"]).to eq params[:article][:title]
         expect(res["user"].keys).to eq ["id", "name", "email"]
         expect(res["user"]["id"]).to eq current_user.id
-        expect(article.status).to eq "publishe"
+        expect(article.status).to eq "published"
       end
     end
 
@@ -116,7 +116,7 @@ RSpec.describe "Articles", type: :request do
     subject { patch(api_v1_article_path(article_id), params: params, headers: headers) }
 
     let(:current_user) { create(:user) }
-    let(:params) { { article: attributes_for(:article, status: "publishe") } }
+    let(:params) { { article: attributes_for(:article, status: "published") } }
     let(:headers) { current_user.create_new_auth_token }
 
     context "適切なパラメータを送信した時" do

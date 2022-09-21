@@ -23,7 +23,7 @@ RSpec.describe "Api::V1::Articles::Drafts", type: :request do
     end
 
     context "自分の記事が公開状態の時" do
-      let!(:article) { create(:article, :publishe, user: current_user) }
+      let!(:article) { create(:article, :published, user: current_user) }
       it "記事の取得ができない" do
         subject
         res = JSON.parse(response.body)
@@ -52,7 +52,7 @@ RSpec.describe "Api::V1::Articles::Drafts", type: :request do
     end
 
     context "自分の記事が公開状態の時" do
-      let(:article) { create(:article, :publishe, user: current_user) }
+      let(:article) { create(:article, :published, user: current_user) }
 
       it "記事の取得ができない" do
         expect { subject }.to raise_error(ActiveRecord::RecordNotFound)
