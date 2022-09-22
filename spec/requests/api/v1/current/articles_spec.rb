@@ -18,7 +18,6 @@ RSpec.describe "Api::V1::Current::Articles", type: :request do
 
       it "自分の公開記事一覧が取得できる" do
         subject
-        expect(response).to have_http_status(:ok)
         res = JSON.parse(response.body)
         expect(res.count).to eq 2
         expect(res[0].keys).to eq ["id", "title", "body", "updated_at", "user"]
