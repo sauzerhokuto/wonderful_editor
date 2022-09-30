@@ -12,7 +12,7 @@ RSpec.describe "Articles", type: :request do
         subject
         res = JSON.parse(response.body)
         expect(res.count).to eq 3
-        expect(res[0].keys).to eq ["id", "title", "body", "updated_at", "user"] # 記事にbodyが含まれていない&更新日が表示
+        expect(res[0].keys).to eq ["id", "title", "updated_at", "user"] # 記事にbodyが含まれていない&更新日が表示
         expect(response).to have_http_status(:ok) # 誰でも見れる
         expect(res.map {|d| d["id"] }).to eq [article.id, article1.id, article2.id]
       end
