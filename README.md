@@ -40,4 +40,4 @@ Qiita 風の記事作成アプリ
   - 結合テスト(Request)
 
 ## ER図
-![erd.pdf](https://github.com/sauzerhokuto/wonderful_editor/files/9738744/erd.pdf)
+![erd](https://user-images.githubusercontent.com/108565543/194699058-11e80e92-6cfb-4994-a724-1ac9f7d9aa11.jpg)
